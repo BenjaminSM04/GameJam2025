@@ -24,7 +24,6 @@ public class Patrollog : log
                                                     moveSpeed * Time.deltaTime);
                 changeAnim(temp - transform.position);
                 myRigidbody.MovePosition(temp);
-                //ChangeState(EnemyState.walk);
                 anim.SetBool("wakeUp", true);
             }
         }

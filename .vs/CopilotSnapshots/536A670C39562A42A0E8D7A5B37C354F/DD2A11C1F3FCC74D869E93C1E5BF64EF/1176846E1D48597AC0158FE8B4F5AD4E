@@ -1,0 +1,52 @@
+﻿# Mi Juego de Aventura RPG
+
+Este es un juego de rol y acción con vista desde arriba, desarrollado con Unity. Inspirado en los clásicos del género como "The Legend of Zelda", el jugador explora mazmorras, lucha contra enemigos y recolecta tesoros para progresar en la aventura.
+
+## Características Principales
+
+*   **Exploración de Mazmorras:** Navega a través de diferentes tipos de habitaciones, desde el mundo exterior hasta las profundidades de las mazmorras.
+*   **Combate en Tiempo Real:** Enfréntate a enemigos con un sistema de combate que incluye retroceso (`knockback`) y manejo de la salud del jugador.
+*   **Sistema de Inventario:** Recolecta ítems y tesoros que se guardan en un inventario persistente.
+*   **Sistema de Salud:** La vida del jugador se gestiona con un sistema de corazones, un clásico del género.
+*   **Interacción con el Entorno:** Interactúa con objetos como cofres, puertas, vasijas y dialoga con personajes.
+*   **Cámara Dinámica:** El sistema de cámara sigue al jugador y realiza transiciones suaves al cambiar de habitación.
+*   **Persistencia de Datos:** El estado del jugador (posición, salud, etc.) se mantiene entre escenas.
+
+## Mecánicas de Juego
+
+El núcleo del juego se basa en la exploración y el combate:
+
+*   **Movimiento y Exploración:** El jugador se mueve en un mapa basado en habitaciones. Al llegar al borde de una, la cámara transiciona a la siguiente, cargando el nuevo entorno.
+*   **Combate:** Los enemigos, como el `Log`, patrullan las áreas. El jugador puede atacar y, al recibir daño, tanto el jugador como el enemigo sufren un efecto de `knockback`.
+*   **Gestión de Recursos:** El jugador debe vigilar su salud, representada por corazones. Puede encontrar objetos en cofres y vasijas para recuperarse o mejorar sus habilidades.
+*   **Eventos y Señales:** El juego utiliza un sistema de Señales (`Signal`) para comunicar eventos de forma desacoplada. Por ejemplo, una `HealthSignal` notifica a otros sistemas (como la UI de corazones) cuando la salud del jugador cambia.
+
+## Estructura del Proyecto
+
+La lógica principal del juego se encuentra en la carpeta `Assets/Scripts`.
+
+*   `Assets/Scripts`: Contiene todos los scripts de C# que definen el comportamiento de los personajes, enemigos, ítems y la lógica del juego.
+*   `Assets/scriptableObjects`: Esta carpeta es crucial, ya que contiene `ScriptableObjects` que se utilizan para:
+    *   Gestionar datos persistentes entre escenas (como `VectorValue` para la posición del jugador).
+    *   Definir ítems y el inventario (`Item`, `Inventory`).
+    *   Actuar como "Señales" para un sistema de eventos (`Signal`, `HealthSignal`).
+
+## Scripts Clave
+
+*   `Player Movement.cs`: Controla el movimiento del personaje principal.
+*   `Enemy.cs` / `Log.cs`: Clase base para los enemigos y una implementación específica de un enemigo que patrulla.
+*   `HeartManager.cs`: Gestiona la interfaz de usuario de la salud del jugador.
+*   `Roommove.cs` / `Scene transition.cs`: Manejan la lógica para cambiar entre habitaciones y escenas.
+*   `Interactable.cs`: Clase base para todos los objetos con los que el jugador puede interactuar.
+*   `Signal.cs` / `Signal Listener.cs`: Implementación del patrón Observer para crear un sistema de eventos robusto y desacoplado.
+
+## Cómo Empezar
+
+1.  Clona o descarga este repositorio.
+2.  Abre el proyecto con **Unity Hub**, asegurándote de seleccionar una versión compatible de Unity (por ejemplo, 2020.3 LTS o superior).
+3.  Una vez abierto el proyecto, busca la escena del menú principal en la carpeta `Assets/Scenes` y ejecútala para empezar a jugar.
+
+## Motor del Juego
+
+*   **Unity**
+

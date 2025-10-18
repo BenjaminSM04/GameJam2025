@@ -1,0 +1,20 @@
+﻿# Mi Juego de Aventura RPG
+
+Este es un juego de rol y acción con vista desde arriba, desarrollado con Unity. Inspirado en los clásicos del género, el jugador explora mazmorras, lucha contra enemigos y recolecta tesoros.
+
+## Características Principales
+
+*   **Exploración de Mazmorras:** Navega a través de diferentes tipos de habitaciones, desde el mundo exterior hasta las profundidades de las mazmorras.
+*   **Combate en Tiempo Real:** Enfréntate a enemigos con un sistema de combate que incluye retroceso (knockback) y manejo de la salud del jugador.
+*   **Sistema de Inventario:** Recolecta ítems y tesoros que se guardan en el inventario del jugador.
+*   **Sistema de Salud:** La vida del jugador se gestiona con un sistema de corazones.
+*   **Interacción:** Interactúa con el entorno, abre cofres, rompe vasijas y dialoga con personajes.
+*   **Cámara Dinámica:** El sistema de cámara sigue al jugador y se ajusta al entrar en nuevas habitaciones.
+
+## Motor del Juego
+
+*   **Unity**
+
+## Estructura del Proyecto
+
+La lógica principal del juego se encuentra en la carpeta `Assets/Scripts`. Los `ScriptableObjects` se utilizan para gestionar datos desacoplados como el inventario, valores de salud y la posición del jugador.
