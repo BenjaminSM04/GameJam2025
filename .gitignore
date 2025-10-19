@@ -1,0 +1,33 @@
+# Unity basics
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+.Gradle/
+.gradle/
+*.csproj
+*.sln
+*.user
+*.unityproj
+*.pidb
+*.suo
+*.tmp
+*.userprefs
+
+# Packages cache (SE EXCLUYE; mantener manifest.json y packages-lock.json)
+Packages/PackageCache/
+
+# Artefactos de compilación/plataformas
+[Bb]in/
+[Aa]ssets/StreamingAssets/aa/*
+*/.DS_Store
+*.apk
+*.aab
+
+# Rider / VSCode
+.idea/
+.vscode/
