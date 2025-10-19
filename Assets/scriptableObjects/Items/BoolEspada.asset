@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526a5f434d762e14ba5f63f129bacd3a, type: 3}
   m_Name: BoolEspada
   m_EditorClassIdentifier: 
-  Swordobteind: 0
-  newValue: 0
+  Swordobteind: 1
+  newValue: 1
