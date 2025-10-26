@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 21300000, guid: 573f17d6860aa7748a1013af2ae7d54f, type: 3}
-  itemDescription: "No es tu espada pero te servira en el camino, para atacar presiona
-    \u25A3"
+  itemDescription: "Encontre mi linterna, pero te servira en el camino, para usarla
+    presiona \u25A3/ space"
   isKey: 0
