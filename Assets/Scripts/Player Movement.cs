@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public enum PlayerState
@@ -30,7 +29,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentState= PlayerState.walk;
+        currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
         animator.SetFloat("MoveX", 0);
@@ -42,55 +41,82 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
         Sword = bo.Swordobteind;
-        if (currentState == PlayerState.interact) {
+        if (currentState == PlayerState.interact)
+        {
             return;
         }
 
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger && Sword!=false)
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger && Sword != false)
         {
             StartCoroutine(AttackCo());
         }
         else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
-            {
-                UpdateAnimationAndMove();
-            } 
-            
+        {
+            UpdateAnimationAndMove();
+        }
+
 
     }
+
+    private void NormalizeAttackDirection()
+    {
+        if (change.x != 0 && change.y != 0)
+        {
+            if (Mathf.Abs(change.x) > Mathf.Abs(change.y))
+            {
+                change.y = 0;
+            }
+            else
+            {
+                change.x = 0;
+            }
+        }
+
+        if (change != Vector3.zero)
+        {
+            animator.SetFloat("MoveX", change.x);
+            animator.SetFloat("MoveY", change.y);
+        }
+    }
+
     private IEnumerator AttackCo()
     {
+        NormalizeAttackDirection();
+
         animator.SetBool("Attacking", true);
         currentState = PlayerState.attack;
         yield return null;
         animator.SetBool("Attacking", false);
         yield return new WaitForSeconds(.3f);
-        if(currentState != PlayerState.interact) {
+        if (currentState != PlayerState.interact)
+        {
             currentState = PlayerState.walk;
         }
-       
+
     }
     public void RaiseItem()
     {
-        if (playerInventory.currentItem!=null) {
-        
+        if (playerInventory.currentItem != null)
+        {
 
-            if(currentState != PlayerState.interact) 
+
+            if (currentState != PlayerState.interact)
             {
-            
-            animator.SetBool("receive item", true);
-            currentState = PlayerState.interact;
-            receivedItemSprite.sprite = playerInventory.currentItem.itemSprite;
-        }
-  
+
+                animator.SetBool("receive item", true);
+                currentState = PlayerState.interact;
+                receivedItemSprite.sprite = playerInventory.currentItem.itemSprite;
+            }
+
             else
             {
-            animator.SetBool("receive item", false);
+                animator.SetBool("receive item", false);
                 currentState = PlayerState.idle;
-            receivedItemSprite.sprite = null;
-           playerInventory.currentItem = null;
+                receivedItemSprite.sprite = null;
+                playerInventory.currentItem = null;
             }
         }
     }
@@ -118,26 +144,27 @@ public class NewBehaviourScript : MonoBehaviour
     }
     public void Knock(float KnockTime, float damage)
     {
-       
+
         currentHealth.RuntimeValue -= damage;
         playerHealthSignal.Raise();
         if (currentHealth.RuntimeValue > 0)
         {
 
             StartCoroutine(KnockCo(KnockTime));
-        }else
+        }
+        else
         {
             SceneManager.LoadScene("Gameover");
         }
     }
-    private IEnumerator KnockCo( float knocktime)
+    private IEnumerator KnockCo(float knocktime)
     {
         if (myRigidbody != null)
         {
             yield return new WaitForSeconds(knocktime);
             myRigidbody.velocity = Vector2.zero;
             currentState = PlayerState.idle;
-            myRigidbody.velocity-= Vector2.zero;    
+            myRigidbody.velocity -= Vector2.zero;
         }
     }
 
